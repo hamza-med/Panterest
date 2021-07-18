@@ -9,6 +9,7 @@
 		<article>
 			<a href="{{path('app_pin_show',{'id':pin.id})}}"><h2>{{pin.title}}</h2></a>
 		</article>
-			<h2>{{pin.description}}</h2>
+			<p>{{pin.description|u.truncate(10,'...',false)}}</p>
+			<p>Submitted {{pin.createdAt|ago}}</p>
 	{% endfor %}
 {% endblock %}
