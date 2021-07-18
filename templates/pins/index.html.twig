@@ -1,15 +1,19 @@
-{% extends 'base.html.twig' %}
+{% extends 'layouts/base.html.twig' %}
 
 {% block title 'Find the best Pins' %}
 
 
 {% block body %}
-	<h1>{{pluralize(pins|length,'pin')}} </h1>
+	<h1>{{pluralize(pins|length,'pin')}}
+	</h1>
 	{% for pin in pins %}
 		<article>
-			<a href="{{path('app_pin_show',{'id':pin.id})}}"><h2>{{pin.title}}</h2></a>
+			<a href="{{path('app_pin_show',{'id':pin.id})}}">
+				<h2>{{pin.title}}</h2>
+			</a>
 		</article>
-			<p>{{pin.description|u.truncate(10,'...',false)}}</p>
-			<p>Submitted {{pin.createdAt|ago}}</p>
+		<p>{{pin.description|u.truncate(10,'...',false)}}</p>
+		<p>Submitted
+			{{pin.createdAt|ago}}</p>
 	{% endfor %}
 {% endblock %}
