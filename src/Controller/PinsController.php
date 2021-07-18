@@ -21,7 +21,7 @@ class PinsController extends AbstractController
         return $this->render('pins/index.html.twig', compact('pins'));
     }
 
-    #[Route("/pins/create", name: 'app_pins_create')]
+    #[Route("/pins/create",priority:1, name: 'app_pins_create')]
     public function create(Request $request, EntityManagerInterface $em): Response
     {
         $pin = new Pin;
