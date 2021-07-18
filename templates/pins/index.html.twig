@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PinsController!
+{% endblock %}
+
+{% block body %}
+	<h1>{{pluralize(pins|length,'pin')}} </h1>
+	{% for pin in pins %}
+		<article>
+			<h2>{{pin.title}}</h2>
+		</article>
+			<h2>{{pin.description}}</h2>
+	{% endfor %}
+{% endblock %}
