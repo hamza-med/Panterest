@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Pin;
+use App\Form\PinType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -25,11 +26,7 @@ class PinsController extends AbstractController
     public function create(Request $request, EntityManagerInterface $em): Response
     {
         $pin = new Pin;
-        $form = $this->createFormBuilder($pin)
-            ->add('Title', TextType::class)
-            ->add('Description', TextareaType::class)
-            ->getForm();
-
+        $form = $this->createForm(PinType::class,$pin);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $em->persist($pin);
@@ -41,7 +38,6 @@ class PinsController extends AbstractController
     }
 
 
-
     #[Route("/pins/{id<\d+>}", name: 'app_pin_show')]
     public function show(Pin $pin): Response
     {
@@ -51,10 +47,7 @@ class PinsController extends AbstractController
     #[Route("/pins/{id<\d+>}/edit", name: 'app_pin_edit')]
     public function edit(Pin $pin, Request $request, EntityManagerInterface $em): Response
     {
-        $form = $this->createFormBuilder($pin)
-            ->add('Title', TextType::class)
-            ->add('Description', TextareaType::class)
-            ->getForm();
+        $form = $this->createForm(PinType::class,$pin);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $em->flush();
