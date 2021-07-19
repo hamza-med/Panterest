@@ -1,0 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+@import 'shared/variables';
+@import "~bootstrap/scss/bootstrap";
+body {
+  font-family: $primary-font, sans-serif;
+}
+
+.alert {
+  font-size: 16px;
+  text-align: center;
+  padding: 10px;
+  margin: 0;
+  border: none;
+  border-radius: 0;
+}

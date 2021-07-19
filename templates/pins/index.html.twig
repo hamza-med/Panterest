@@ -12,7 +12,7 @@
 				<h2>{{pin.title}}</h2>
 			</a>
 		</article>
-		<p>{{pin.description|u.truncate(10,'...',false)}}</p>
+		<p>{{pin.description|u.truncate(20,'...',false)}}</p>
 		<p>Submitted
 			{{pin.createdAt|ago}}</p>
 	{% endfor %}
