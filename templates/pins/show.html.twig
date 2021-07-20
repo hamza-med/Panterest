@@ -12,11 +12,11 @@
 						<img src="{{ vich_uploader_asset(pin) }}" alt="{{ pin.title }}" class="w-100 rounded-top">
 					</a>
 				</div>
-				<h2 class="h5 pt-3 px-3">
+				<h1 class="h5 pt-3 px-3">
 					<a class="text-secondary text-decoration-none " href="{{path('app_pin_show',{'id':pin.id})}}">
 						{{ pin.title | capitalize }}
 					</a>
-				</h2>
+				</h1>
 				<p class="pb-3 px-3 text-muted">
 					<small>Submitted
 						<time dtaetime="{{pin.createdAt | date('Y-m-d H:i:s')}}">{{pin.createdAt | ago}}</time>
