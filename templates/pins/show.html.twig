@@ -4,16 +4,35 @@
 
 
 {% block body %}
-
-	<article>
-		<h1>{{pin.title}}</h1>
-		<p>{{pin.description}}</p>
-	</article>
-	<a href="{{path('app_pin_edit',{'id':pin.id})}}">Edit</a>|
-	<a href="#" onclick="event.preventDefault();confirm('Are you sure ?')&& document.getElementById('js-pin-delete-form').submit();">Delete</a>
-
-	<form id="js-pin-delete-form" action="{{path('app_pin_delete',{'id':pin.id})}}" method="post" style="display:none;">
-		<input type="hidden" name="_method" value="DELETE">
-		<input type="hidden" name="csrf_token" value={{csrf_token('pin_deletion' ~ pin.id)}}>
-	</form>
+	<div class="row">
+		<div class="col-md-6 mx-auto">
+			<article class="pin bg-white rounded shadow">
+				<div class="mw-100 overflow-hidden">
+					<a href="{{path('app_pin_show',{'id':pin.id})}}">
+						<img src="{{ vich_uploader_asset(pin) }}" alt="{{ pin.title }}" class="w-100 rounded-top">
+					</a>
+				</div>
+				<h2 class="h5 pt-3 px-3">
+					<a class="text-secondary text-decoration-none " href="{{path('app_pin_show',{'id':pin.id})}}">
+						{{ pin.title | capitalize }}
+					</a>
+				</h2>
+				<p class="pb-3 px-3 text-muted">
+					<small>Submitted
+						<time dtaetime="{{pin.createdAt | date('Y-m-d H:i:s')}}">{{pin.createdAt | ago}}</time>
+						by
+															[OWNER FULL NAME]</small>
+				</p>
+				<p class="px-3 pb-3">{{pin.description}}</p>
+				<div class="px-3 pb-3">
+					<a class="btn btn-dark btn-sm" href="{{path('app_pin_edit',{'id':pin.id})}}">Edit</a>
+					<a class="btn btn-dark btn-sm" href="#" onclick="event.preventDefault();confirm('Are you sure ?')&& document.getElementById('js-pin-delete-form').submit();">Delete</a>
+					<form id="js-pin-delete-form" action="{{path('app_pin_delete',{'id':pin.id})}}" method="post" style="display:none;">
+						<input type="hidden" name="_method" value="DELETE">
+						<input type="hidden" name="csrf_token" value={{csrf_token('pin_deletion' ~ pin.id)}}>
+					</form>
+				</div>
+			</article>
+		</div>
+	</div>
 {% endblock %}
