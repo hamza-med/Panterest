@@ -51,15 +51,12 @@ class PinsController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $em->flush();
-
             $this->addFlash('success','Pin successfully updated!');
-
             return $this->redirectToRoute('app_home');
         }
-
-
         return $this->render('pins/edit.html.twig', ['pin' => $pin, 'form' => $form->createView()]);
     }
+
     #[Route("/pins/{id<\d+>}/delete", name: 'app_pin_delete')]
     public function delete(Pin $pin, EntityManagerInterface $em, Request $request): Response
     {
@@ -69,7 +66,6 @@ class PinsController extends AbstractController
             $em->flush();
             $this->addFlash('info','Pin successfully deleted!');
         }
-
         return $this->redirectToRoute('app_home');
     }
 }
