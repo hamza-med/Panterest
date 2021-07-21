@@ -8,7 +8,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Pin;
+use App\Entity\User;
 use App\Form\PinType;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 
 
@@ -27,7 +29,8 @@ class PinsController extends AbstractController
         $pin = new Pin;
         $form = $this->createForm(PinType::class, $pin);
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) { 
+            $pin->setUser($this->getUser());
             $em->persist($pin);
             $em->flush();
             $this->addFlash('success','Pin successfully created!');
