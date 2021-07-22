@@ -22,8 +22,8 @@
 					</p>
 					<p class=" text-break">{{pin.description}}</p>
 					<div class="pt-3">
-						<a class="btn btn-dark btn-sm" href="{{path('app_pin_edit',{'id':pin.id})}}">Edit</a>
-						<a class="btn btn-dark btn-sm" href="#" onclick="event.preventDefault();confirm('Are you sure ?')&& document.getElementById('js-pin-delete-form').submit();">Delete</a>
+						<a class="btn btn-light btn-md" href="{{path('app_pin_edit',{'id':pin.id})}}">Edit</a>
+						<a class="btn btn-light btn-md" href="#" onclick="event.preventDefault();confirm('Are you sure ?')&& document.getElementById('js-pin-delete-form').submit();">Delete</a>
 						<form id="js-pin-delete-form" action="{{path('app_pin_delete',{'id':pin.id})}}" method="post" style="display:none;">
 							<input type="hidden" name="_method" value="DELETE">
 							<input type="hidden" name="csrf_token" value={{csrf_token('pin_deletion' ~ pin.id)}}>

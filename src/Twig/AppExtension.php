@@ -7,15 +7,16 @@ use Twig\TwigFunction;
 
 class AppExtension extends AbstractExtension
 {
-    
+
+
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('pluralize', [$this, 'doSomething']),
+            new TwigFunction('pluralize', [$this, 'pluralize']),
         ];
     }
  
-    public function doSomething(int $count,string $singular):string
+    public function pluralize(int $count,string $singular):string
     {
         if($count == 1 ){
             return "$count $singular" ;

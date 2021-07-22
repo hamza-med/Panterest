@@ -1,19 +1,18 @@
 {% extends 'layouts/base.html.twig' %}
 
 
-{% block title %}Log in!
-{% endblock %}
+{% block title 'Log in!' %}
+
 
 {% block body %}
 	<form method="post">
 		{% if error %}
 			<div class="alert alert-danger rounded mb-3" role="alert">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 		{% endif %}
-
 		{% if app.user %}
 			<div class="mb-3">
 				You are logged in as
-				{{ app.user.username }},
+				{{ app.user.fullName }},
 				<a href="{{ path('app_logout') }}">Logout</a>
 			</div>
 		{% endif %}
@@ -42,7 +41,7 @@
 			<button class="btn  btn-primary w-100" type="submit">
 				Sign in
 			</button>
-			<p class="my-3 text-center text-muted">Not registered yet? <a href="#">Create an account</a></p>
+			<p class="my-3 text-center text-muted">Not registered yet? <a href="{{path('app_register')}}">Create an account</a></p>
 		</form>
 	</div>
 
